@@ -12,20 +12,25 @@
 </head>
 
 <body>
-    <header>
+    <header class="container-fluid text-white text-center p-2 header">
         <h1>Weather Dashboard</h1>
     </header>
 
-    <div>
+    <div class="container-fluid">
         <div class="row">
             <aside class="col-lg-3 pb-3">
-                <h2>Search for a City:</h2>
-                <form>
+                <h2 id="search-heading" class="mt-1">Search for a City:</h2>
+                <form class="form">
                     <div>
                         <div>
-                            <input />
+                            <input 
+                                type="text"
+                                placeholder="San Diego"
+                            />
                             <div>
-                                <button type="submit">
+                                <button 
+                                    type="submit"
+                                >
                                     Search
                                 </button>
                                 <!-- hr adds the line break -->
@@ -42,7 +47,7 @@
 
             </section>
             <section>
-                
+
             </section>
         </div>
     </div>
