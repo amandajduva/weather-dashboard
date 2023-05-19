@@ -17,7 +17,12 @@ input {
     width: 100%;
 }
 
-button {
+.btn {
+    border-radius: 10;
+    width: 100%;
+}
+
+.search-button {
     border-radius: 3px;
     background-color: #83A1CD;
     border-color: #83A1CD;
