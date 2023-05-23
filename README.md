@@ -16,7 +16,7 @@ Screenshot of deployed application:
 
 ## Credits
 
-While I wrote the code for this application, I received support from received support from a tutor to understand the structure of the application
+While I wrote the code for this application, I received support from received support from a tutor to understand the structure of the application.
 ## License
 
 Please refer to the LICENSE in the repo.
