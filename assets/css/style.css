@@ -21,7 +21,7 @@ input {
     border-color: black;
     background-color: lightgray;
     border-radius: 3px;
-    width: 92%;
+    width: 94%;
     padding-left: 20px;
     margin-left: 20px;
     margin-bottom: 10px;
@@ -59,9 +59,3 @@ input {
 #today {
     border-color: black;
 }
-
-/* #forecast {
-    display: flex;
-    flex-direction: row;
-    margin: 10px;
-} */

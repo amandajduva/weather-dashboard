@@ -5,7 +5,7 @@ let searchForm = document.querySelector("#search-form");
 let searchInput = document.querySelector("#search-input");
 let history = document.querySelector("#history");
 let today = document.querySelector("#today");
-let forecast = document.querySelector(".forecast");
+let forecast = document.querySelectorAll(".forecast");
 
 function searchCity(event) {
     event.preventDefault();
@@ -35,10 +35,7 @@ function searchCity(event) {
             // PASS the values on to the function being called
             currentWeather(lat, lon, cityName);
             forecastWeather(lat, lon, cityName);
-            // let cityList = localStorage.getItem();
-            // if (cityList) {
-            
-            // }
+    
             if (searchHistory.indexOf(cityName) === -1) {
                 searchHistory.push(cityName);
                 localStorage.setItem("cityList", JSON.stringify(searchHistory));
@@ -101,7 +98,7 @@ function currentWeather(lat, lon, cityName) {
 function forecastWeather(lat, lon) {
 
     let forecastAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
-    // let forecastAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`
+   
 
     fetch(forecastAPI)
         .then(response => response.json())
@@ -109,6 +106,7 @@ function forecastWeather(lat, lon) {
             console.log("Forecast Data: ", data);
 
             for (i = 0; i < 5; i++) {
+                forecast[i].innerHTML = "";
                 let forecastIndex = i * 8 + 6;
                 let dayForecast = data.list[forecastIndex];
 
@@ -121,24 +119,22 @@ function forecastWeather(lat, lon) {
                 let iconUrl = `https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png`;
                 iconImg.setAttribute("src", iconUrl);
 
-                forecast.innerHTML = "";
-                // needs date
                 let dateElement = document.createElement("h3");
                 dateElement.textContent = forecastDate;
-                forecast.append(dateElement);
-                forecast.append(iconImg);
+                forecast[i].append(dateElement);
+                forecast[i].append(iconImg);
 
                 let tempElement = document.createElement("p");
                 tempElement.textContent = "Temperature: " + temp + "°F";
-                forecast.append(tempElement);
+                forecast[i].append(tempElement);
 
                 let windElement = document.createElement("p");
                 windElement.textContent = "Wind: " + wind + " mph";
-                forecast.append(windElement);
+                forecast[i].append(windElement);
 
                 let humElement = document.createElement("p");
                 humElement.textContent = "Humidity: " + humidity + "%";
-                forecast.append(humElement);
+                forecast[i].append(humElement);
             }
         })
         .catch(error => {
@@ -154,7 +150,7 @@ function showSearchHistory() {
         for (let i = cityListArr.length - 1; i >= 0; i--) {
             let btn = document.createElement("button");
             btn.setAttribute("type", "button");
-            btn.textContent = searchHistory[i];
+            btn.textContent = cityListArr[i];
             btn.classList.add("btn");
             history.append(btn);
         }
@@ -169,3 +165,4 @@ history.addEventListener("click", function (event) {
     searchInput.value = targetCity;
     searchCity(event);
 })
+showSearchHistory();
