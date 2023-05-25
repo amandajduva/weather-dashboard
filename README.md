@@ -16,7 +16,7 @@ Screenshot of deployed application:
 
 ## Credits
 
-While I wrote the code for this application, I received support from received support from a tutor to understand the structure of the application and fetching data from the API.
+While I wrote the code for this application, I received support from a tutor to understand the structure of the application and fetching data from the API.
 ## License
 
 Please refer to the LICENSE in the repo.
