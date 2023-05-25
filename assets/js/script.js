@@ -5,7 +5,7 @@ let searchForm = document.querySelector("#search-form");
 let searchInput = document.querySelector("#search-input");
 let history = document.querySelector("#history");
 let today = document.querySelector("#today");
-let forecast = document.querySelector("#forecast");
+let forecast = document.querySelector(".forecast");
 
 function searchCity(event) {
     event.preventDefault();
@@ -37,7 +37,7 @@ function searchCity(event) {
             forecastWeather(lat, lon, cityName);
             // let cityList = localStorage.getItem();
             // if (cityList) {
-
+            
             // }
             if (searchHistory.indexOf(cityName) === -1) {
                 searchHistory.push(cityName);
@@ -120,9 +120,9 @@ function forecastWeather(lat, lon, cityName) {
                 let iconUrl = `https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png`;
                 iconImg.setAttribute("src", iconUrl);
 
-                // needs date and icon added
+                // needs date
                 let dateElement = document.querySelector("h3");
-                // dateElement.textContent = forecastDate;
+                dateElement.textContent = forecastDate;
                 forecast.append(dateElement);
                 forecast.append(iconImg);
 
@@ -153,6 +153,7 @@ function showSearchHistory() {
             let btn = document.createElement("button");
             btn.setAttribute("type", "button");
             btn.textContent = searchHistory[i];
+            btn.classList.add("btn");
             history.append(btn);
         }
     }
