@@ -12,7 +12,7 @@ To use this project, you can review the html, css, and js files. To test your ow
 Link to the [deployed application](https://amandajduva.github.io/weather-dashboard/). 
 
 Screenshot of deployed application:
-![deployed application](/weather-dashboard/assets/images/weather-dashboard-screenshot.png)
+![deployed application](./assets/images/weather-dashboard-screenshot.png)
 
 ## Credits
 
