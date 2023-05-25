@@ -98,7 +98,7 @@ function currentWeather(lat, lon, cityName) {
         });
 }
 
-function forecastWeather(lat, lon, cityName) {
+function forecastWeather(lat, lon) {
 
     let forecastAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
     // let forecastAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`
@@ -121,6 +121,7 @@ function forecastWeather(lat, lon, cityName) {
                 let iconUrl = `https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png`;
                 iconImg.setAttribute("src", iconUrl);
 
+                forecast.innerHTML = "";
                 // needs date
                 let dateElement = document.createElement("h3");
                 dateElement.textContent = forecastDate;
