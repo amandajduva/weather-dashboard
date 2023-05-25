@@ -17,6 +17,13 @@ input {
     width: 100%;
 }
 
+button {
+    border-color: black;
+    background-color: lightgray;
+    border-radius: 10;
+    width: 100%;
+}
+
 .btn {
     border-radius: 10;
     width: 100%;

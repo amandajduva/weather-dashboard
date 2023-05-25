@@ -32,7 +32,6 @@ function searchCity(event) {
             let lon = data[0].lon;
 
             console.log("Coord: ", lat, lon);
-
             // PASS the values on to the function being called
             currentWeather(lat, lon, cityName);
             forecastWeather(lat, lon, cityName);
@@ -45,6 +44,7 @@ function searchCity(event) {
                 localStorage.setItem("cityList", JSON.stringify(searchHistory));
                 showSearchHistory();
             }
+            searchInput.value = "";
         })
         .catch(error => {
             throw error;
@@ -69,6 +69,7 @@ function currentWeather(lat, lon, cityName) {
             console.log(currentDay);
             currentDay = currentDay.format("MM/DD/YYYY");
 
+            today.innerHTML = "";
             // Create new elements and APPEND them to the DOM 
             let displayHeading = document.createElement("h2");
             displayHeading.setAttribute("id", "title");
@@ -79,7 +80,6 @@ function currentWeather(lat, lon, cityName) {
             displayHeading.textContent = cityName + " (" + currentDay + ") ";
             today.append(displayHeading);
             displayHeading.append(iconImg);
-
 
             let tempElement = document.createElement("p");
             tempElement.textContent = "Temperature: " + temp + "°F";
@@ -108,26 +108,35 @@ function forecastWeather(lat, lon, cityName) {
         .then(data => {
             console.log("Forecast Data: ", data);
 
-            for (i = 0; i < forecast.length; i++) {
-                let forecastIndex = i * 8 + 4;
+            for (i = 0; i < 5; i++) {
+                let forecastIndex = i * 8 + 6;
+                let dayForecast = data.list[forecastIndex];
 
-                // let temp = ;
-                // let wind = ;
-                // let humidity = ;
+                let temp = dayForecast.main.temp;
+                let wind = dayForecast.wind.speed;
+                let humidity = dayForecast.main.humidity;
+                let forecastDate = dayForecast.dt_txt.split(" ")[0];
+                let iconImg = document.createElement("img");
+                let iconUrl = `https://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png`;
+                iconImg.setAttribute("src", iconUrl);
 
-                // // needs date and icon added
+                // needs date and icon added
+                let dateElement = document.querySelector("h3");
+                // dateElement.textContent = forecastDate;
+                forecast.append(dateElement);
+                forecast.append(iconImg);
 
-                // let tempElement = document.createElement("p");
-                // tempElement.textContent = "Temperature: " + temp;
-                // today.append(tempElement);
+                let tempElement = document.createElement("p");
+                tempElement.textContent = "Temperature: " + temp + "°F";
+                forecast.append(tempElement);
 
-                // let windElement = document.createElement("p");
-                // windElement.textContent = "Wind: " + wind + " mph";
-                // today.append(windElement);
+                let windElement = document.createElement("p");
+                windElement.textContent = "Wind: " + wind + " mph";
+                forecast.append(windElement);
 
-                // let humElement = document.createElement("p");
-                // humElement.textContent = "Humidity: " + humidity + "%";
-                // today.append(humElement);
+                let humElement = document.createElement("p");
+                humElement.textContent = "Humidity: " + humidity + "%";
+                forecast.append(humElement);
             }
         })
         .catch(error => {
@@ -135,18 +144,6 @@ function forecastWeather(lat, lon, cityName) {
         });
 }
 
-// function searchHistory() {
-//     history.innerHTML = "";
-
-//     for (let i = history.length - 1; i >= 0; i--) {
-//         let btn = document.createElement("button");
-//         btn.setAttribute("type", "button");
-//         btn.setAttribute("", searchHistory[i]);
-//         btn.textContent = searchHistory[i];
-//         history.append(btn);
-//     }
-//     searchHistory();
-// }
 function showSearchHistory() {
     let cityList = localStorage.getItem("cityList");
     if (cityList) {
@@ -155,10 +152,17 @@ function showSearchHistory() {
         for (let i = cityListArr.length - 1; i >= 0; i--) {
             let btn = document.createElement("button");
             btn.setAttribute("type", "button");
-            // btn.setAttribute("", searchHistory[i]);
             btn.textContent = searchHistory[i];
             history.append(btn);
         }
     }
 }
-    searchForm.addEventListener("submit", searchCity); 
+searchForm.addEventListener("submit", searchCity);
+history.addEventListener("click", function (event) {
+    if (!event.target.type === "button") {
+        return;
+    }
+    let targetCity = event.target.innerText;
+    searchInput.value = targetCity;
+    searchCity(event);
+})
