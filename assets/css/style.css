@@ -34,3 +34,7 @@ input {
     border-color: black;
     background-color: lightgray;
 }
+
+#today {
+    border-color: black;
+}
