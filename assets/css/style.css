@@ -17,11 +17,14 @@ input {
     width: 100%;
 }
 
-button {
+#history button {
     border-color: black;
     background-color: lightgray;
     border-radius: 10;
     width: 100%;
+    padding-left: 20px;
+    margin-left: 10px;
+    margin-bottom: 10px;
 }
 
 .btn {
@@ -45,3 +48,9 @@ button {
 #today {
     border-color: black;
 }
+
+/* #forecast {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+} */

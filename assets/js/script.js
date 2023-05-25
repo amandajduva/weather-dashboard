@@ -117,7 +117,7 @@ function forecastWeather(lat, lon, cityName) {
                 let humidity = dayForecast.main.humidity;
                 let forecastDate = dayForecast.dt_txt.split(" ")[0];
                 let iconImg = document.createElement("img");
-                let iconUrl = `https://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png`;
+                let iconUrl = `https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png`;
                 iconImg.setAttribute("src", iconUrl);
 
                 // needs date and icon added
