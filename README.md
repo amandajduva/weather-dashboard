@@ -9,10 +9,10 @@ To use this project, you can review the html, css, and js files. To test your ow
 -  It displays the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed.
 -  Also displays a five-day forecast with the date, an icon representation of weather conditions, the temperature, the humidity and the wind speed.
 
-Link to the [deployed application](). 
+Link to the [deployed application](https://amandajduva.github.io/weather-dashboard/). 
 
 Screenshot of deployed application:
-![deployed application]()
+![deployed application](/weather-dashboard/assets/images/weather-dashboard-screenshot.png)
 
 ## Credits
 
