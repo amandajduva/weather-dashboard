@@ -116,12 +116,13 @@ function forecastWeather(lat, lon, cityName) {
                 let wind = dayForecast.wind.speed;
                 let humidity = dayForecast.main.humidity;
                 let forecastDate = dayForecast.dt_txt.split(" ")[0];
+                forecastDate = dayjs(forecastDate).format("MM/DD/YYYY");
                 let iconImg = document.createElement("img");
                 let iconUrl = `https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png`;
                 iconImg.setAttribute("src", iconUrl);
 
                 // needs date
-                let dateElement = document.querySelector("h3");
+                let dateElement = document.createElement("h3");
                 dateElement.textContent = forecastDate;
                 forecast.append(dateElement);
                 forecast.append(iconImg);
